@@ -1,94 +1,59 @@
 package com.kerware.simulateurreusine;
 
 public class AdaptateurSimulateur implements ICalculateurImpot {
+    private final Simulateur simulateur;
 
-    private Simulateur simulateur = new Simulateur();
-
-    private int revenusNetDecl1 = 0;
-    private int revenusNetDecl2 = 0;
-    private SituationFamiliale situationFamiliale;
-    private int nbEnfantsACharge;
-    private int nbEnfantsSituationHandicap;
-    private boolean parentIsole;
-
-
-    @Override
-    public void setRevenusNetDeclarant1(int rn) {
-        this.revenusNetDecl1 = rn;
+    public AdaptateurSimulateur() {
+        this.simulateur = new Simulateur();
     }
 
     @Override
-    public void setRevenusNetDeclarant2(int rn) {
-        this.revenusNetDecl2 = rn;
+    public void setRevenusNetDeclarant1(int revenuNetDeclarant1) {
+        simulateur.setRevenusNetDeclarant1(revenuNetDeclarant1);
     }
 
     @Override
-    public void setSituationFamiliale(SituationFamiliale sf) {
-        this.situationFamiliale = sf;
+    public void setRevenusNetDeclarant2(int revenuNetDeclarant2) {
+        simulateur.setRevenusNetDeclarant2(revenuNetDeclarant2);
     }
 
     @Override
-    public void setNbEnfantsACharge(int nbe) {
-        this.nbEnfantsACharge = nbe;
+    public void setSituationFamiliale(SituationFamiliale situationFamiliale) {
+        simulateur.setSituationFamiliale(situationFamiliale);
     }
 
     @Override
-    public void setNbEnfantsSituationHandicap(int nbesh) {
-        this.nbEnfantsSituationHandicap = nbesh;
+    public void setNbEnfantsACharge(int nbEnfantsACharge) {
+        simulateur.setNbEnfantsACharge(nbEnfantsACharge);
     }
 
     @Override
-    public void setParentIsole(boolean pi) {
-        this.parentIsole = pi;
+    public void setNbEnfantsSituationHandicap(int nbEnfantsSituationHandicap) {
+        simulateur.setNbEnfantsSituationHandicap(nbEnfantsSituationHandicap);
     }
 
     @Override
-    public void calculImpotSurRevenuNet() {
-         simulateur.calculImpot(revenusNetDecl1, revenusNetDecl2 ,situationFamiliale, nbEnfantsACharge, nbEnfantsSituationHandicap, parentIsole);
-    }
-
-    @Override
-    public int getRevenuNetDeclatant1() {
-        return revenusNetDecl1;
-    }
-
-    @Override
-    public int getRevenuNetDeclatant2() {
-        return revenusNetDecl2;
-    }
-
-    @Override
-    public double getContribExceptionnelle() {
-        return simulateur.getContribExceptionnelle();
-    }
-
-    @Override
-    public int getRevenuFiscalReference() {
-        return (int)simulateur.getRevenuReference();
-    }
-
-    @Override
-    public int getAbattement() {
-        return (int)simulateur.getAbattement();
+    public void setParentIsole(boolean parentIsole) {
+        simulateur.setParentIsole(parentIsole);
     }
 
     @Override
     public double getNbPartsFoyerFiscal() {
-        return simulateur.getNbParts();
+        return simulateur.getNbPartsFoyerFiscal();
     }
 
     @Override
-    public int getImpotAvantDecote() {
-        return (int)simulateur.getImpotAvantDecote();
+    public double getAbattement() {
+        return simulateur.getAbattement();
     }
 
     @Override
-    public int getDecote() {
-        return (int)simulateur.getDecote();
+    public double getImpotSurRevenuNet() {
+        return simulateur.getImpotSurRevenuNet();
     }
 
     @Override
-    public int getImpotSurRevenuNet() {
-        return (int)simulateur.getImpotNet();
+    public void calculImpotSurRevenuNet() {
+        simulateur.calculImpotSurRevenuNet();
     }
 }
